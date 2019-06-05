@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+
+  manager:
+    logging: 
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  nginx:
+    logging: 
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"

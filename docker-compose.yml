@@ -1,0 +1,26 @@
+version: "3"
+
+services: 
+
+  manager:
+    image: sangah/pwd-manager:${MANAGER_VERION}
+    environment:
+    - ALLOWED_HOSTS
+    volumes: 
+    - "web-static:/opt/pwd-manager/static"
+    - "./local_settings.py:/opt/pwd-manager/pwd_manager/local_settings.py"
+    restart: "unless-stopped"
+
+  nginx:
+    build: nginx
+    #network_mode: "service:manager"
+    ports:
+    - "$MANAGER_LISTEN_PORT:80"
+    depends_on: 
+    - manager
+    volumes: 
+    - "web-static:/var/www/static"
+    restart: "unless-stopped"
+
+volumes: 
+  web-static:

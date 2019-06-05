@@ -1,0 +1,12 @@
+version: "3"
+
+services: 
+
+  manager:
+    build: app
+    environment:
+    - ALLOWED_HOSTS
+    ports:
+    - "$MANAGER_LISTEN_PORT:8091"
+    volumes: 
+    - "./local_settings.py:/opt/pwd-manager/pwd_manager/local_settings.py"
